@@ -3,7 +3,6 @@ const { httpGetAllLaunches, httpAddNewLaunch,httpAbortLaunch } =
 require("./launches.controller");
 
 const launchesRouter = express.Router();
-launchesRouter.use()
 launchesRouter.get("/", httpGetAllLaunches);
 launchesRouter.post("/", httpAddNewLaunch);
 launchesRouter.delete("/:id", httpAbortLaunch);
