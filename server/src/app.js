@@ -4,25 +4,12 @@ const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const passport = require("passport");
-const { Strategy } = require("passport-google-oauth20");
 
-function verifyCallBack(accessToken, refreshToken, profile, done) {
-  console.log(profile);
-  done(null, profile);
-}
 
-passport.use(
-  new Strategy({
-    callbackURL: "/auth/google/callback",
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-  }, verifyCallBack)
-);
 
 const app = express();
 
 const api = require("./api");
-const { verify } = require("crypto");
 
 app.use(
   cors({
@@ -31,7 +18,6 @@ app.use(
 );
 
 app.use(helmet());
-app.use(passport.initialize());
 
 app.use(morgan("combined")); //log writing to console
 app.use(express.json());
